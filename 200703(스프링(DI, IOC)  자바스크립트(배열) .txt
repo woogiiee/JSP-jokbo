@@ -1,0 +1,39 @@
+DI
+생성 1. new 생성자
+      2. 함수로 생성(Set 함수)
+
+IOC 
+제어의 역전
+부품--> 컴퓨터
+
+https://galid1.tistory.com/493 (Spring을 왜사용하나요??)
+=================================
+1. 아래의 개념을 설명하시오.
+-DI
+객체 자체가 아니라 Framework에 의해 객체의 의존성이 주입되는 설계 패턴
+framework에 의해 동적으로 주입되므로 여러 객체간의 결함이 줄어든다.
+의존성 주입 방법 두가지
+1) 생성자를 통한 전달
+2) 함수식(setter)을 통한 전달
+
+-IoC
+어떤 객체가 사용할 객체(의존관계인 객체)를 직접 선언하여 사용하는 것이 아니라,
+어떤 방법을 사용하여(ex. 생성자) 주입 받아 사용하는 것.
+
+-IoC 컨테이너
+IOC기능을 제공하는 컨테이너. Bean들을 담고있ㄷ,
+Bean 정의를 읽어들이고, Bean을 구성하고 제공.(Bean을 만들어주고, 엮어주고, 제공해줌)
+
+
+2. 스프링의 장점 및 단점에 대하여 이야기 하여 보세요.
+
+3.  원, 삼각형, 사각형의 객체를 만든후, 반지름 10, 가로 세로 10 인 각각의 넓이를 구하는 프로그램을 작성하시오.
+조건) Ioc 컨테이너를 통하여 객체를 생성할것.
+
+4) 아래의 결과를 예측하고, 아래의 부분을 설명하시오.		
+var varArrSort = new Array("E", "B", "A", "C", "D");
+console.log("varArrSortBefore : " + varArrSort);
+console.log("varArrSort : " + varArrSort.sort());
+console.log("varArrSortAfter : " + varArrSort);
+varArrSort = varArrSort.sort();  // 설명하시오.
+console.log("varArrSortAfter : " + varArrSort); //결과가 왜 그렇게 나오는지 설명하시오
