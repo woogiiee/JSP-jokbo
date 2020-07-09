@@ -1,0 +1,80 @@
+https:localhost/8282/....
+		포트번호/ 스프링에서는 컨텍스트명
+
+1. 메이븐은 빌드 툴 이다. (컴파일 부터 배포까지 시키는 것이 메이븐)
+2. pom.xml을 메이븐이 읽는다. (컴파일 부터 배포까지 시키기 위한 내용(라이브러리)이 있는 것이 pom.xml)
+3. web.xml을 읽는다. web.xml은 톰캣, WAS를 위한 설정. 클래스 객체생성을 통해 
+annotation driven 한줄로 controller을 위한 객체 HandlerMapping, HandlerAdapter를 생성.
+handlermapping은 url과 controller의 
+
+개발자가 프로그래밍 하는 것은 controller와 view(JSP)이다. 
+
+동적리소스 와 정적리소스가 다르다.
+
+=================================================================
+1.스프링 mvc 란 무엇인가?(https://hunit.tistory.com/189),,,(https://tinkerbellbass.tistory.com/40)
+MVC(Model View Controller)란 비즈니스 규칙은 표현하는 도메인 모델과 프레젠테이션을
+표현하는 View를 분리하기 위하여 양측 사이에 컨트롤러를 배치하도록 설계한
+디자인 패턴이다.
+스프링 MVC란 스프링이 제공하는 웹 어플리케이션 구축 전용의 MVC프레임워크이다.
+스프링 MVC를 이용함으로써 웹 어플리케이션의 Model, View, Controller 사이의
+의존 관계를 DI 컨테이너에서 관리하고 통일된 유연한 웹 어플리케이션을 구축할 수 있다.
+
+2.아래를 설명하시오.
+-pom.xml
+Maven이 참조하는 설정파일 중 하나. 메이븐의 빌드 정보를 담고 있는 파일이며,
+pom.xmlㅇ[ 기술된 내용을 바탕으로 필요한 라이브러리를 다운로드 하거나
+내장해서 프로그램을 빌드하고 실행.
+
+-web.xml
+서블릿 배포 기술자라고 한다. (설정을 위한 설정 파일)
+web.xml은 WAS --> Tomcat이 최초 구동될 때, Web-inf 디렉토리에 존재하는
+web.xml을 읽고, 그에 해당하는 웹 어플리케이션 설정을 구성한다. 
+여러 xml파일을 인식하도록 각 파일을 가리켜 준다.
+
+-servlet-context.xml
+xml파일은 모두 객체(Bean)을 정의한다. servlet에서 보듯이 요청과 관련된 객체를 정의한다.
+url과 관련된 controller나, @(어노테이션), viewResolver, Interceptor, MultipartResolver등의 설정을 해준다.
+
+3.스프링의 아래의 객체에 대하여 설명하고, 해당 스프링의 실행 순서는?
+-dispacherservlet
+사전적 의미로도 서블릿을 배치하고 분배하고 보급하는 기능을 담당하고 있다고 할 수 있다.
+이 역할은 MVC구조중 가장 중간에 위치하여 웹 브라우저에서 요청한 정보를 받아
+핸들러매핑에 역할을 분배하고, 컨트롤러에서 보내온 정보를 받아, 뷰 리졸버에 전달 후,
+뷰에서 출력된 화면을 웹에 다시 전송해주는 역할을 한다.
+
+-HandlerMapping
+사용자가 요청한 url을 분석하여 이것을 처리할 handler를 찾아주는 역할을 한다. 
+기본적으로 DispatcherSerlvet에 등록되어 있는 2가지 handler가 있으며,
+@을 기반으로 API를 작성 했다면 RequestMappingHandlerMapping구현체가 사용이 된다.
+
+-HandlerAdapter
+HandlerMapping이 찾아낸 handler를 호출하고 처리하는 인터페이스이다. 즉, 요청을
+처리하는 역할을 한다. HandlerAdapter도 DispatcherSerlvet에서 기본적으로 등록해주는
+구현체들이 있다. @을 기반으로 API를 작성했다면 RequestMappingHandlerAdapter
+구현체가 사용된다.
+
+두개 요약본(Handler)
+* 사용자가 요청을 하게 되면 DispatcherServlet의 doService()가 호출된다.
+* doService()에서는 이 요청을 처리하기 위해 Handler와 Adapter를 찾아
+호출하기 위해 다시 doDispatch()를 호출한다.
+* doDispatch()에서는 HandlerMapping을 통해서 요청에 맞는 HandlerMethod를 찾는다.
+그 후 찾아낸 Handler Method를 호출할 수 있는 HandlerAdapter를 찾는다.
+* HandlerAdapter에 의해 실질적으로 handlermethod가 실행된다.
+* 마지막으로 ReturnValuHandler에 의해 handlermethod의 실행 결과값을 적절한
+response로 생성하여 사용자에게 응답한다.
+
+-Controller
+-ViewResolver
+handler에서 반환하는 view이름(String)에 해당하는 View를 찾아내는 인터페이스이다.
+개발자가 별도의 Bean을 등록하지 않는다면, 기본전략으로 InternalResurce ViewResolver가
+사용이 된다. Internal Resource view Resolver는 기본적으로 JSP를 지원하기 때문에
+지금까지 JSP를 사용하여 반환할 수 있었던 것이다.
+
+4.jsp로 spring을 짜 보시오.
+ 
+5. 아래의 javascript 함수를 만드시오.
+
+var sorento = createCar("SORENTO", "GREY", 220);
+			console.log("sorento.name : " + sorento.name);
+			console.log("sorento.run : " + sorento.run());
