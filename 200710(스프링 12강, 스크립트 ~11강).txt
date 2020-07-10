@@ -1,0 +1,87 @@
+데이터(커맨드) 객체=함수안에 데이터 타입을 바로 넣는것.
+제한사항
+1. 멤버 안에 디폴트 생성자가 반드시 있어야 한다.
+2. url의 이름, 아이디, pw 가 데이터 속성 변수의 이름 과 같아야 한다.
+calhost:8282/ex/board/checkId?id=abcd&pw=1234 ---> id, pw 이게 멤버 클래스 안의 변수 이름과 같아야 한다는 뜻.
+
+==================================================
+1.Model 객체에 대하여 설명하시오.
+-- Controller에서 생성한 데이터를 담아서 View로 전달할 때 사용하는 객체.
+-- Servlet의 request.setAttribute()와 유사한 역할.
+-- addAttribute("키","값")메소드를 사용하여 전달할 데이터 세팅.
+
+
+2.ModelAndView 객체의 사용법은?
+이 기능은 ModelAndView("이동할 페이지","키","value)를 한번에 하는 것이다.
+//방법1. return 값을 String 형으로 만들어 주고 Model을 따로 장착시키는 방법
+	//return은 view의 이름을 명시해주고, view에서 사용될 model은 따로 주입을 하는 방법
+	@RequestMapping(value="/student01.do", method=RequestMethod.GET)
+	public String student01(Model model){
+		model.addAttribute("student",new Student());
+		return "student/student";
+	}
+	
+	//방법2. ModelAndView를 활용하는 방식
+	//방법1의 단계를 1개로 합친 것 
+	@RequestMapping(value="/student02.do",method=RequestMethod.GET)
+	public ModelAndView student02(){
+		return new ModelAndView("student/student","student",new Student());//경로, 키, 벨류
+	}
+
+
+3.아래를 @을 설명하시오.
+-@RequestParam
+이 어노테이션은 HttpServletRequest 객체와 같은 역할을 한다.
+HttpServletRequest 에서는 getParameter()메소드를 이용했지만,
+@RequestParam을 이용해서 받아오는 방법도 있다. 메소드의 파라미터값으로 
+@RequestParam을 넣어주면 된다.
+@RequestParam("가져올 데이터의 이름") [데이터 타입][가져온데이터를 담을 변수]
+
+
+4.req.getParameter 보다 @RequestParam 의 장점은?
+여러개의 값을 받아올 때 그 갯수만큼의 parameter를 선언해줘야 한다는 것.
+폼에 있는 모든 값을 불러오기 위해서 여러개의 변수를 하나씩 다 선언해주는 것은
+귀찮은 일이니, 
+
+
+5.command 객체란?
+ - 유의할점 2가지는?
+쉽게 말해, VO(DTO)와 같다고 할 수 있다. 즉, 커맨드 객체가 되기 위한 조건은
+Getter와 Setter가 필수적으로 있어야 한다.
+커맨드 객체의 역할에는 3가지가 있는데,
+1) 컨트롤러에서 View로 바인딩: View단에서 form:form태그 를 사용하는 경우
+2) View에서 컨트롤러로 바인딩: View단에서 input type="text" 혹은 input type="hidden"으로
+값을 컨트롤러로 전송하는 경우
+3) 컨트롤러에서 Mapper.xml로 바인딩: Mapper.xml에서 title#{title}, contents =#{contents}처럼
+사용하는 경우, 커맨드 객체를 통해 #{변수명}과 커맨드 객체의 필드명을 통해 바인딩 해주는 경우
+
+제한사항
+1. 멤버 안에 디폴트 생성자가 반드시 있어야 한다.
+2. url의 이름, 아이디, pw 가 데이터 속성 변수의 이름 과 같아야 한다.
+localhost:8282/ex/board/checkId?id=abcd&pw=1234 ---> id, pw 이게 멤버 클래스 안의 변수 이름과 같아야 한다는 뜻.
+
+
+6.HttpServletRequest 객체를 설명하시오.
+HttpServletRequest를 사용하면, 값을 받아올 수 있다.
+예를 들어 아이디, 비밀번호 등의 데이터를 컨트롤러로 보냈을때,
+HttpServletRequest 객체 안에 모든 데이터들이 들어가게 된다.
+원하는 데이터를 꺼낼때는 HttpServletRequest객체 안의 메소드를 이용하면 된다. 
+getParameter() --> 이 메소드는 반환타입이 String 타입이다.
+
+7.정보은닉이란?
+모든 객체지향 언어적 요소를 활용하여 객체에 대한 구체적인 정보를 노출시키지 않도록하는 기법.
+
+8.아래를 프로그래밍 하시오.
+-프로토타입으로 함수를 만들것
+
+			var player1 = new Scoring("홍길동", 99, 90, 92);
+			console.log(player1.player + "의 총점 : " + player1.getTotal());
+			console.log(player1.player + "의 평균 : " + player1.getAverage());
+			
+			var player2 = new Scoring("홍길순", 80, 90, 85);
+			console.log(player2.player + "의 총점 : " + player2.getTotal());
+			console.log(player2.player + "의 평균 : " + player2.getAverage());
+9.아래를 스프링 mvc로 프로그래밍 하시오.
+이름 국어 영어 수학 을 입력 하는 페이지를 만든후, 이름과 총점 평균을 클라이언트에게 보내줄것
+1)조건 - command 객체 사용 할것
+2)롬복이 사용 할것.
