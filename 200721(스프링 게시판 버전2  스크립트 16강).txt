@@ -1,0 +1,93 @@
+--게시판 변화= command, DAO, Controller --> @Service, @Repository, @Controller
+
+--@Service, @Repository, @Controller 이 3개의 부모는 @Component
+
+**html - 시멘틱 태그
+	= <div> + 의미
+  <article> 
+  <main>
+  <nav>
+
+-- @를 붙이는 이유는 @component의 자식들을 읽어들일때
+@붙여진 것들을 읽어들이기 떄문
+-- @Autowired는 IOC컨테이너에 들어가있는 @repository의 객체를
+자동으로 가져와 준다. 
+
+
+=========================================================
+1. 게시판 작성시 아래의 용어 들에 대하여 간략히 정리하시오.
+ -Controller, Command , DAO
+ -@Controller, @Service, @Repository
+-- Controller는 사용자(Client)의 요청(Request)을 어떻게 처리할지(Handling)
+결정하는 녀석이다.
+Annotation: @Controller = Controller의 역할을 수행한다고
+명시해주는 어노테이션이다. Client의 Request가 서버에 도착
+했을 때 Controller에 정의 된 기준대로 요청을 처리하게 되는데
+이를 위해 @Controller라는 어노테이션을 명시하여 이녀석이
+컨트롤러이며 요청이 들어오면 이녀석의 내용을 기준 삼아
+요청을 처리하라는 말이다.
+서비스는 DAO객체를 참조하는 인스턴스 변수를 가지고
+있으며 이것을 통해 데이터베이스에 액세스할 수 있다.
+
+-- 서비스 객체는 스프링 MVC에서는 서비스 인터페이스를 구현한
+객체이다. 이런 방식으로 객체를 구현하는 이유는 단순히 if else
+문의 단순 중첩문의 유지보수가 어려운 코드를 양산하는 것이 아닌
+객체 지향적인 방법을 활용하여 유지보수가 편한 코드를 작성하도록
+유도하기 위해서이다.
+서비스는 DAO객체를 참조하는 인스턴스 변수를 가지고 있으며
+이것을 통해 데이터베이스에 엑세스할 수 있다. 역시 @Autowired를
+통해 자동주입이 되는 것을 볼 수 있다.
+이 객체가 서비스 객체라는 것을 알리는 어노테이션으로는
+@component, @repository, @service 중 실무에서는 의도가 명확한
+@service가 쓰인다.
+
+-- @Repository어노테이션은 DAO에 특화된 어노테이션이다.
+@component 어노테이션을 써도 상관없지만, DAO클래스들에
+@repository어노테이션을 사용함으로써 @component어노테이션이
+가진 특성과 함께, DAO의 메소드에서 발생할 수 있는 unchecked exception
+들을 스프리으이 DataAccessException으로 처리할 수 있는 장점 또한
+갖을 수 있다.
+
+2.@Component의  역할 과 세팅은 어디서 하며, 어떠한 의미인지 설명하시오.
+스프링에서 관리되는 객체임을 표시하기 위해 사용하는 가장
+기본적인 어노테이션이다. 즉, scan-auto-detection과 dependency injection을 
+사용하기 위해서 사용되는 가장 기본 어노테이션이다.
+component-scan을 선언에 의해 특정 패키지 안의 클래스들을
+스캔하고, @component 어노테이션이 있는 클래스에 대하여
+bean 인스턴스를 생성한다. 
+@component 구체화 --> @controller,@service,@repository
+XML파일에 따로 설정이 필요하다.
+
+3.Command 객체에 대하여 설명하시오.
+HTTP에서 들어오는 데이터의 각 속성들이 적으면 @Requestparam으로
+커버가 가능하겠지만 이것보다 많은 6개, 10개 혹은 그이상의
+속성들이 들어오게 되면 @RequestParam들을 하나하나 명시해서
+처리해야되므로 매우 까다로워진다. 따라서 스프링에서는
+커맨드 객체를 지원하여 HTTP에서 들어오는 각 속성값들을 자동적으로
+커맨드 객체에 바인딩하여 처리할수 있게 하였다.
+
+
+4.아래의 방식으로 게시판을 완성하시오.(댓글 포함)
+ @Controller, @Service, @Repository
+
+5. input 박스에서 type=button 과 type=submit
+일때의 차이를 자바 스크립트 예제로 설명하시오.
+* 기능적 차이
+폼 전송 기능을 하는 <input type="submit">과 <button>은
+기능적으로 동일하다. 기본적으로 button 요소는 type 속성을 
+명시하지 않으면 submit 기능을 수행한다. 즉 폼에서 이를 대체하기 위한 
+목적으로는 안성맞춤이다.
+
+* button 속성값
+브라우저별 기본 button 요소의 기능이 상이할 수 있으니 되도록 이를 명시하도록 하자.
+-- type="submit" : 폼의 전송 기능을 담당한다.
+-- type="reset" : 폼 작성 내용을 초기화하는데 사용한다.
+-- type="button" : 흔히 자바스크립트를 이용한 기능 구현에 많이 사용한다.
+
+* button 요소의 장점은?
+무엇보다도 디자인적인 관점에서 input 요소와 달리 매우 자유롭다. 
+일반적인 요소들을 디자인하는 모든 것들을 적용할 수 있어 배경으로 이미지를
+넣을 수도 있고, <button> 과 </button> 사이에 다른 태그들을 삽입할 수도 있다.
+최근에는 각종 라이브러리에서 button 요소들에 대한 꾸밈을 적용한 CSS를
+배포하기에 간단히 클래스명을 이용해 이를 적용할 수도 있다.
+
