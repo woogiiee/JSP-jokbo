@@ -1,0 +1,51 @@
+프로젝트==1. 요구사항 분석 2. 설계 3. 코딩 4. 테스트 5. 메뉴얼 6. 단위테스트(함수테스트)ppt에 넣기
+
+@controller--> @service 호출--> @repository(mapper)=DB에서 데이터 가지고오는것 --
+pom.xml은 maven이 관리한다.
+spring ver3 --> 전자정부프레임(java 1.6버전으로 지원), 금융권(java 1.2버전으로 지원)
+spring ver4 --> java 1.8
+spring ver5 --> java 1.9
+
+@annotation을 읽어 들이기 위한 handlermapping, handleradapter를 해석하기 위한 객체를 생성하는 것이
+<annotation driven/> 이다.
+mvc:annotation-driven
+Spring MVC 컴포넌트들을 디폴트 설정을 통해 활성화한다.
+Spring MVC @Controller에 요청을 보내기 위해 필요한 HandlerMapping과 HandlerAdapter를 Bean으로 등록한다.
+HandlerMapping : HTTP 요청정보를 이용해서 컨트롤러를 찾아주는 기능
+HandlerAdapter : HandlerMapping을 통해 찾은 컨트롤러를 직접 실행하는 기능을 수행
+Bean을 생성하기 위해 xml 파일에 context:component-scan을 명시하면 이 태그를 포함하지 않아도 MVC 어플리케이션을 작동한다.
+
+**Mapper는 interface로서 자손을 구현을 해야하는데 이전의 DAO와 달리 XML파일이 구현한다.
+xml파일에 쿼리문을 넣을때 세미콜론은 뺴야한다.
+select문의 id = id는 해당 인터페이스에 있는 함수명과 이름을 동일하게 해야한다.
+	result type = list에 한해서 이전의 return 타입은 list였지만 지금의 xml파일에서의 result type은 제네릭타입(<>안에 들어있는 것)만 적어주게 되면 알아서 해당 list를 반환해준다.
+
+
+
+JQuery
+이미지를 자동으로 불러와지는 것이 아닌 html파일에서 was로부터 다운로드 받는것.
+그 이미지가 저장되는 곳은 브라우저의 캐쉬에 저장되어 진다.
+**자바스크립트에서
+**var a={};-->객체
+**var b=[];-->배열
+
+======================================================================================
+1.<annotation-driven /> 은 무엇을 뜻하는가?
+@annotation을 읽어 들이기 위해 handlermapping과 handleradapter의
+해석을 위한 객체를 생성하는 것이 <annotation driven/> 이다.
+-- spring MVC컴포넌트들을 디폴트 설정을 통해 활성화한다.
+-- spring MVC @controller에 요청을 보내기 위해 필요한 handlermapping과
+handlerAdapter를 bean으로 등록한다.
+-- HandlerMapping : HTTP요청정보를 이용해서 컨트롤러를
+찾아주는 기능.
+-- HandlerAdapter : HandlerMapping을 통해 찾은 컨트롤러를
+직접 실행하는 기능을 수행
+-- Bean을 생성하기 위해 xml파일에 context:component-scan을 명시하면
+이 태그를 포함하지 않아도 MVC어플리케이션을 작동한다.
+
+
+2.mybatis를 위한 library는?
+
+3.게시판 삭제를 구현하시오.
+
+4.가위바위보 게임을 jquery 함수를 이용하여 구성하시오.
