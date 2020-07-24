@@ -1,0 +1,36 @@
+주입 3가지 방식
+	1. 생성자
+	2. Setter 함수
+	3. 필드에 다이렉트로 넣기 (@Autowired)
+	
+3번방법은 되도록 쓰지 말고 setter함수를 이용해서 주입하자.
+(@Setter(onMethod_= @Autowired)
+
+**테스트순서
+datasource(커넥션 풀) 테스트 하고 mapper테스트 하고 controller테스트
+
+**컨트롤러 테스트
+WebApplicationContext ctx;	 /이 WebApplicationContext는 스프링에서 가져온다(다른말로 IOC컨테이너에서 가져온다), 이 안에는 controller가 포함되어있다.
+
+
+DispatcherServlet은 servlet webApplicationcontext 와 Root webApplicationcontext 두개의 스프링 xml파일을
+만든다. 
+ servlet webApplicationcontext은 controller, viewResolver, HandlerMapping
+ Root webApplicationcontext은 services, repositories
+
+- MockMvc란?
+실제 객체와 비슷하지만 테스트에 필요한 기능만 가지는 가짜 객체를 만들어서
+애플리케이션 서버에 배포하지 않고도 스프링 MVC동작을 재현할 수 있는 클래스를 의미.
+
+3조 일등 김재욱
+============================================================
+1.아래를 목엠브이씨를 할용하여 테스트 하시오.
+		@RequestMapping("/write")
+		public String write(BoardVO boardVO) throws Exception {
+			log.info("write()");		
+			service.writeBoard(boardVO);				
+			return "redirect:list";
+		}
+2.마이 바티스를 이용 하여 게시판을 완성 하시오.
+
+3.선택자중 자식 자손 선택자에 대하여 설명하시오.
