@@ -1,0 +1,48 @@
+로깅(logging)이란?
+1) 시스템을 작동할 때 시스템의 작동상태의 기록과 보존
+2) 이용자의 습성 조사 및 시스템 동작의 분석 등을 하기 위해
+   작동중의 각종 정보를 기록
+
+@log4j= 
+- 단순히 systenm, out println으로 처리시 뿌려야되는 정보가 많음
+- 따라서 아니나 다를까 누군가가 로깅을 위한 라이브러리를 만들어놓음
+누군가가 만든 이것의 원칙을 따라야함
+
+
+AOP = 관점지향
+공통 기능을 핵심 기능과 분리해 놓고, 공통 기능 중에서
+핵심 기능에 적용하고자 하는 부분에 적용하는 것.
+
+**AOP 용어정리
+1. Aspect : 공통 기능이 들어있는 클래스(예제, 로깅....트랜잭션..)
+2. Advice : Aspect 클래스 안에 있는 공통 기능(한마디로 Aspect 안의 함수)
+3. Joinpoint : advice 함수가 적용되는 함수
+4. Point Cut : jointpoint의 부분으로 실제로 적용되는 함수내의 지점(@before함수 시작전, @after함수 끝나는 지점, @around함수 전체)
+5. weaving : advice를 적용하는 행위
+
+
+========================================================
+1.로그와 system.out.pritln()의 차이점은?
+
+2.log에서 아래의 개념에 대하여 설명하시오?
+-logger : 출력할 메시지를 Appender에 전달한다.
+-appender : 전달된 로그를 어디에 출력할 지 결정한다. (콘솔 출력, 파일 기록, DB 저장 등)
+-layout : 로그를 어떤 형식으로 출력할 지 결정한다.
+
+
+* https://addio3305.tistory.com/43
+
+3.관점지향 프로그래밍 언어(AOP)란 무엇인가?
+4.아래의 함수를 설명하시오.
+-e.stopPropagation();
+-e.preventDefault();
+
+* https://programmingsummaries.tistory.com/313
+
+
+5.아래의 용어를 설명하시오.
+-Aspect 
+-Advice
+-JointPoint 
+-PointCut 
+-weaving
