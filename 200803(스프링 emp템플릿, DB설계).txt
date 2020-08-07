@@ -1,0 +1,28 @@
+web에 관련된 자료를 보게되거나 혹은 API를 보게 되었을때
+가장 맣이 보이는 단어가 Restful
+
+주위 개발자들도 REST(Restful을 줄여서 REST라고도 부른다)를 업무에 쓰고있지만,
+정확히 이해를 하지못한채 복붙만 하고있다.
+REST(Representational State Transfer)는 웹 창시자 중의 한 명인 로이필딩(Roy Fielding)에 의해 2000년에 논문 발표 되었음.
+
+- Rest가 리소스 지향적 아키텍쳐
+- URI를 활용
+- 사용자라는 리소스를 http://myweb/users 로 표현하였다면 gildong이라는 아이디의 리소스는
+http://myweb/users/gildong 이라는 형태로 정의
+
+REST를 통한 CRUD
+
+스프링에선 @pathvariable을 통해서 주소를 받아오는 것을 Restful이라 한다.
+
+** contextpath를 쓰는 이유? contextpath가 변경 되어도 소스 소정
+없이 적용하기 위해서 하용 = 유지보수 용이
+
+** 스키마 = 컬럼에 재약조건을 거는것.
+
+========================================
+1.아래를 프로그래밍 하시오.
+-가로 세로 박스에 submit 버튼을 누르면 ,넓이 결과값을 출력하는 프로그래밍을 하시오.
+-ajax로 데이터를 보내고 받을것.
+2.금일 했는거 완성해 주세요.
+-restful delete 
+-ajax로 emp 템플릿에 출력
