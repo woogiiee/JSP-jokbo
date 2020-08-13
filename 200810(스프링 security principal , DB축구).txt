@@ -1,0 +1,21 @@
+* spring security
+
+security holder
+authentication 인증
+principal
+user detail
+user
+이 순서대로 있다
+
+-- spring security는 세션-쿠키 방식으로 인증한다.
+여기서는 전통적인 쿠키-세션 방식을 사용한다.(JWT이런거는 spring-security-oauth2등..)
+
+1. 유저가 로그인을 시도( http request)
+2. AuthenticationFilter 에서부터 위와같이 user DB까지 타고 들어감
+3. DB에 있는 유저라면 UserDetails로 꺼내서 유저의 session 생성
+4. spring security의 인메모리 세션저장소인 SecurityContextHolder에 저장
+5. 유저에게 session ID와 함께 응답을 내려줌
+6. 이후 요청에서는 요청쿠키에서 JSESSIONID를 까봐서 검증 후 유효하면 Authentication을 쥐어준다.
+
+-- username, password뽑을때 model로 넘기지말고
+principal에서 그냥 뽑아서 쓸 것.

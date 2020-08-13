@@ -1,0 +1,136 @@
+마이바티스 : 1:N,,,,,,,,,,,,,, 마이바티스는 자바기반 
+DB : 조인처리
+
+* VO 처리하는 방법(1:N관계,, 1=dept, N= emp)
+dept를 기준으로(1:N관계에서 1이기 때문에)deptno, loc, 
+
+
+ 만드는 순서 : vo->mapper-> service-> serviceimple-> controller
+
+dispatcherservlet , viewresolver = web xml에서 객체 생성
+handler mapping, handler adapter = servlet contexxt xml 에서 객체 생성
+
+* 남규형 *
+3.스프링의 아래의 객체에 대하여 설명하고, 해당 스프링의 실행 순서는?
+-dispacherservlet : 클라이언트의 요청을 전달받아 요청에 맞는 컨트롤러가 리턴한 결과값을 View에 전달하여 알맞은 응답을 생성
+
+-HandlerMapping : 클라이언트의 요청 URL을 어떤 컨트롤러가 처리할지 결정
+
+-HandlerAdapter : 이렇게 매핑된 핸들러를 실제로 실행하는 역할은 핸들러 어댑터가 담당한다 (HandlerAdapter 객체가 이 역할을 한다)
+
+-Controller : 클라이언트의 요청을 처리한 뒤 결과를 dispacherservlet에게 리턴
+
+-ViewResolver : 컨트롤러의 처리 결과를 생성할 뷰를 결정
+
+-view : 컨트롤러의 처리 결과 화면을 생성, JSP 또는 Velocity 템플릿 파일 등을 뷰로 사용
+
+실행순서
+1. 클라이언트가 DispatcherServlet에 요청을 한다
+2. 그러면 DispatcherServlet가 HandlerMapping에게 그 요청을 보내고
+3. HandlerMapping은 그 일을 해줄 Controller를 찾는다
+4. 그러고 나서 HandlerMapping은 DispatcherServlet에게 그 Controller를 알려주고,
+5. DispatcherServlet은 HandlerAdapter에게  찾은 Controller에 어떤 메서드를 쓸건지 HandlerAdapter에게 물어본다.
+6. HandlerAdapter 는 Controller 에 있는 메소드를 찾고,
+7. Controller는 그 메서드를 수행한다. 이때 Service, DAO 등의 객체를 이용해 DB작업을 보통한다.
+8. 찾은 메서드로 작업을 하고나면 결과를 HandlerAdapter에게 보내주는데, 이때 보통 ModelAndView라는 놈을 이용해서 데이터(Model) 와 View 이름을 리턴해준다.
+9. HandlerAdapter는 그 값을 DispatcherServlet에게 리턴해준다.
+10. DispatcherServlet이 이제 View이름을 아니깐 ViewResolver에게 그 이름을 통해 View를 찾아라고 시킨다.
+11 .그러면 ViewResolver은 View 를 찾고 , 그 View에서는 만들어진 데이터(Model) 값으로 화면의 내용을 구성해서 클라이언트에게 보여준다.
+
+
+* 진성 *
+
+1:1 1:N N:M 처리를 해야하는데
+결국 테이블화 시키면 1:1 1:N만 처리하면 된다.
+
+
+ select * from emp e,dept d where e.deptno=d.deptno and e.deptno=20;
+
+이런 경우 자바문법으로 저걸 받아야되는데 
+클래스를 어떻게 만들것이냐 고민을 해봐야되는데 그거에 대한 수업.
+
+
+1개 1개 컬럼을 다 적어서 받아온다는 개념은 아직 아무것도 모르는 수준,
+
+
+문법을 사용하는 방법
+emp - dept 로 치면
+n  - 1 인데 이 기준으로
+1인 dept한테 List<emp>를 넣어주면 됨
+
+
+
+1.EmpVO가 있는 상태에서 DeptVO도 생성 그리고 DeptEmpVO 생성 . 명명할 때 1이 먼저오고 N이 뒤에 오게.
+
+
+2.src/main/resources 폴더에 edu.bit.emp.mapper 폴더에 EmpMapper.xml 생성
+<resultMap id="Emp" type="edu.bit.emp.vo.EmpVO">
+   <id property="empno" column="empno"/>
+<result property="ename" column="ename"/>
+<result property="job" column="job"/>
+</resultMap>
+
+키같은 경우만 id로 하고 다른 경우는 result로 표현 뒤에 컬럼명을 프로퍼티로 맵핑
+
+
+이것도 추가
+
+<resultMap id="DeptEmp" type="edu.bit.emp.vo.DeptEmpVO">
+   <id property="deptno" column="deptno"/>
+<result property="dname" column="dname"/>
+<result property="loc" column="loc"/>
+</resultMap>
+
+변수들은 다 정리했는데 List<EmpVO> empList;를 어떻게 정의할래
+<collection property="empList" javaType="java.util.ArrayList" resultMap="Emp"/>
+
+추가
+
+콜렉션이라는 이름을 만든이유. 마이바티스는 자바기반으로 만든건데 리스트 트리 큐 이런애들을 콜렉션프레임워크라고 하기
+때문에 지어진듯?
+
+
+1:1관계 일 때는 <association property="">이런 식으로 넣으면 됨
+
+
+
+
+마지막으로 <select id="selectDeptEmp" parameterType="int" resultMap="DeptEmp">
+<![CDATA[
+   select e.ename,d.dname from emp e,dept d where e.deptno=d.deptno and e.deptno= #{deptno}
+
+]]>
+</select>
+
+안에 쿼리문 반드시 세미콜론 ; 없애야함
+
+EmpMapper에 추가 
+DeptEmpVO selectDeptEmp(int deptno);
+
+
+EmpService 생성
+
+public interface EmpService{
+   List<EmpVO> empList();
+   DeptEmpVO deptEmpList(int deptno);
+}
+
+EmpServiceImpl 생성하고
+
+pubilc DeptEmpVO deptEmpList(int deptno){
+   return empMapper.selectDeptEmp(deptno);
+}
+
+
+EmpController에
+
+@GetMapping("list/{deptno}")
+   public String listDeptEmp(@PathVariable("deptno") int deptno,Model model) {
+      log.info("listDeptEmp");
+      DeptEmpVO deptEmp = empService.deptEmpList(deptno);
+      system.out.println(deptEmp.getEmpList());
+
+      model.addAttribute("emps",deptEmp.getEmpList());
+
+      return "emp";
+   }
