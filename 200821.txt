@@ -1,0 +1,11 @@
+형상관리툴, 버전관리툴
+- svn -- 중앙관리식
+- cvs -- 중앙관리식
+- github --분산(소스코드) - AI적용
+
+
+C:\Users\bit\Documents\workspace-sts-3.9.13.RELEASE\spring_sourcetree
+
+sourcetree 용어정리
+origin은 깃허브 서버에 있는 프로젝트 이름
+폴더를 그대로 복사해서 

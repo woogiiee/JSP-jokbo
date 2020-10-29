@@ -1,0 +1,84 @@
+**** mybatis이용해서 게시판만들기 (spring5_mybatis_use_four) 첫번째 방법 ****
+
+-- sql구문을 xml로 빼낸것이 mybatis의 큰 특징중 하나.
+인터페이스를 통한 (추상을 통한) 함수 이름만 적게 되어있다. 구현부분은 없다.
+
+
+---- *첫번째 방법에서 중요한것.*
+1. interface IBDao를 Xml namespace에ㅔ 매핑 <mapper namespace="edu.bit.ex.board1.IBDao">
+2. sqlSession.getMapper(IBDao.class)를 이용.
+
+-- 순서 시작
+1. pom.xml 
+<proporties>부터 쭉 복붙
+
+2. web.xml
+한글처리 복붙
+
+3. servlet-context.xml
+설정되어있는것 의미 다 알기
+
+4. root-context.xml
+hikari configuration 받아오기 -- 
+
+4.1 log4j properties 복사해서 main/resource와 test/resource두곳에 복사
+log4j.xml 에서 <Root logger> warn을 info로 바꿔주기
+
+5. src/main/java에 board1패키지 생성
+
+6. 패키지에 BDto클래스 생성(롬복을 적용시 에러가 난다)
+
+7. 패키지에 IBDao인터페이스 생성
+
+8. main/resource에 패키지 생성 후 mapper.xml 생성 
+<mapper namespace>는 인터페이스 클래스와 패키지를 따라서 설정해준다. 
+IBDao에 있는 list뽑아오는 쿼리문을 쓴다.(select * from mvc_board order by bGroup desc, bStep asc)
+
+9. 패키지에 service클래스 생성
+- 게시판 만들기 첫번째 방법은 mybatis객체를 통해서 getmapper에 해당 인터페이스를 다이렉트로 써주는 것이다.
+- IBDao.class는 동적인 클래스이다. 미리 만들어서도 아니고 new를 써서도 아니고 이미 메모리에 올려저있는 .class
+동적은 메모리상에서 갖다가 끌어올리는 것. 정적은 미리 만들어져 있는것.
+getmapper는 class라는 객체이다.
+
+new, clone, for class = 동적처리 3가지
+쓰는 이유 : class객체를 사용하기 위해서 , 클래스 내에 있는 함수, 기능을 쓸 수 있도록 
+
+10. root-context.xml에 sqlSession설정 해주기
+sqlSessiontemplate이 mybatis이다.(sqlSession)
+
+11. controller 생성
+
+
+**** 두번째 방법(board2)****
+1. service 생성
+interface는 필요가 없음 
+sqlSession에서 제공하는 함수(selectList,selectOne)를 이용함
+쿼리구현을 위한 XML이 필요. 해당 XML의 namespace는  개발자가가 정함
+
+2. Board2.xml 생성
+
+
+
+**** 세번째 방법(board3)****
+-- 인터페이스 위에 @을 붙이는 형식
+-- XML이 필요없음. sqlSession개체 필요없음
+-- root~.xml에 아래의 한줄을 추가
+<!-- Mapper Interface-->
+<mybatis-spring:scan base-package="edu.bit.ex.mapper"/>
+-- 쿼리가 길어지면 사용하기 힘듬
+
+1. Controller생성 
+
+2. service생성
+ selectList만들어주기 위해 mapper 인터페이스에 함수 생성
+
+3. BoardMapper 생성
+
+
+**** 네번째 방법(board4)****
+3번째 방법과 비슷
+
+다른점은 BoardMapper에 쿼리문을 바로 썻던 3번 방법과는 달리
+4번 방법은 Board4.xml을 따로 만들어서 그곳에 쿼리문을 쓴다.
+
+
