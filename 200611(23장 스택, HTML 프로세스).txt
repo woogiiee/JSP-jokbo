@@ -1,0 +1,61 @@
+프로세스 = 실행중인 프로그램(메모리)
+
+멀티프로세스=-> 시간을 나눈다.
+
+==============
+html
+클라이언트<--->서버
+클----->서버 = request
+클<------서버 = response
+
+클라이언트주체: 웹브라우저
+
+
+get방식은 url주소에 실어 보낸다
+post방식은 헤더에 실어보낸다.
+
+input박스 name이 key이고 uname이 value이다.
+
+html해석은 웹브라우저가 해준다.(해석하고 파싱?
+
+radio는 name속성을 같게해줘야 해당 value값이 잘 전달된다.
+
+block으로 하고싶을땐 div를 쓴다.
+
+============================================
+1.581page 문제 23-2 정렬의 기준 정하기
+2.멀티프로세스와 단일 프로세스의 차이는?
+3. 아래를  출력하시오.
+-(반복자 기반)
+- (for-each문 기반)
+HashMap<Integer, String> map = new HashMap<>();
+   map.put(45, "Brown");
+   map.put(37, "James");
+   map.put(23, "Martin");
+
+
+4. 아래를 구현 시키기 위한 Person 객체를 작성하시오.
+TreeSet<Person> tree = new TreeSet<>(new PersonComparator());
+   tree.add(new Person("YOON", 37));
+   tree.add(new Person("HONG", 53));
+   tree.add(new Person("PARK", 22));
+
+   for(Person p : tree)
+      System.out.println(p);
+}
+5. 아래를 기반으로 스택을 구현하시오(조별학습).
+
+interface IStack{
+    boolean isEmpty();
+    boolean isFull();
+    void push(int item);
+    int pop();
+    int peek();
+    void clear();
+}
+
+public class StackArray implements IStack{
+    
+    private int top;
+    private int stackSize;
+    private int stackArr[];

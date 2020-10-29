@@ -1,0 +1,87 @@
+*메소드 오버로딩 = 똑같은 함수 이름으로 타입과 매개변수의 개수를 달리해서 정의할 수 있는것.
+생성자도 오버로딩의 한 예이다.
+
+
+*this 용도
+this객체- 변수나 함수를 호출할때
+this 생성자 함수
+
+immutable
+원판 불변의 법칙
+
+STring builder
+문자열이 계속해서 추가되거나 변경될때 쓴다
+
+=======================================
+1. 메써드 오버로딩이란?
+같은 클래스내에서 같은 이름의 메소드를 사용하는 것이다.
+
+2. 메써드 오버로딩의 다양한 예와, 메써드 오버로딩시 달리해야할 2 가지는?
+생성자를 만드는 것도 오버로딩의 한 예이다.
+똑같은 함수 이름으로 타입과 매개변수의 개수를 달리해서 정의할 수 있다.
+
+3. this 는 무엇이며, this 의 용도 2가지는?
+this 객체 - 변수나 함수를 호출할 때
+this 생성자 함수
+인스턴스 변수의 접근
+
+4. 문자열 생성의 두가지 방법은?
+new생성자를 이용해서 생성하는 것과 두개의 큰따옴표 안에 값을 입력해서 생성하는 두가지이다.
+
+
+5. 아래의 차이는?
+ -String str1 = new String ( "simple string");
+ -String str2 = "간단한 문자열";
+생성되는 메모리 영역이 다르다. 
+
+6. 아래가 false를 반환하는 이유와 true로 반환하게 하려면?
+-if (str1 == str2) 
+메모리공간이 달라서인지?
+
+
+
+7. 문제 11-1 (263page) 프로그램을 작성하시오.
+
+8. string과 string Buffer의 차이는?
+문자열 클래스는 변경할 수 있지만 스트링버퍼는 변경할 수 없다.
+많은 문자열을 연결할 때 문자열 버퍼는 문자열에 비해 더 적은 메모리를 소비하고 빠르다.
+생성자를 포함한 메소드의 수, 메소드의 기능, 메소드의 이름과 매개변수의 선언은 일치하지만
+문자열 버퍼는 스레드 안전성이 불필요한 상황에서 사용하면 성능의 저하만 유발하게 된다.
+
+9. 아래를 사용하여 문자열 함수 등을 사용하십시오.
+//1. 마지막 3 글자 자르기
+String str = "ABCDEFG"; 
+String result = 소스 코딩      
+System.out.println (결과)
+ // 결과 값 EFG
+
+		StringBuilder str = new StringBuilder("ABCDEFG");
+		
+		str.delete(0, 4);
+		System.out.println(str.toString());
+
+
+11. 아래를 통해 문자열 함수 등을 사용합니다.
+// 2. 특정문자 이후의 문자열 제거
+string str = "ABCD / DEFGH";
+string result = 소스 코딩
+System.out.println (result); 
+// 결과 값 DEFGH
+
+		StringBuilder str = new StringBuilder("ABCD");
+		
+		str.append("DEFGH");
+		System.out.println(str.toString());
+		str.delete(0, 4);
+		System.out.println(str.toString());
+		
+
+12. 아래쪽을 프로그래밍하시오.
+Rectangle r1 = new Rectangle (5,6);
+직사각형 r2 = 새로운 직사각형 (7,9);
+
+Rectangle r3 = Rectangle.compareRect (r1, r2);
+
+System.out.println (r3.getHeight () + ":"+ r3.getWidth () + "입니다.");
+===============================
+출력 : 9 : 7입니다.

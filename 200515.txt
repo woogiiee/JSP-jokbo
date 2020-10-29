@@ -1,0 +1,165 @@
+
+
+
+1. 80 과 90 중 큰수를 출력하는 프로그램을 작성하시오.
+ 	int num1 = 90;
+		int num2 = 80;
+		
+		if(num1>num2) {
+		System.out.println(num1+"과"+num2+"중 큰 수는"+ num1+"이다.");
+		}
+	
+2. 국어 70, 수학 60 ,영어 70 의 총점과 평균을 출력하고,
+평균에 대한 수우미양가를 출력하는 프로그램을 작성하시오.
+int k =70;
+		int m = 60;
+		int e = 70;
+		int sum = k + m +e;
+		int ave = (k+m+e)/3;
+		System.out.println(sum);
+		System.out.println(ave);	
+int score = 80;
+		if(score>66) {
+			System.out.println("수");
+		}
+		else if((score>55) && (score<=66)) {
+			System.out.println("우");
+		}	
+		else if((score>45)&&(score<=55)) {
+			System.out.println("미");
+		}
+		else if((score>35)&&(score<=45)) {
+			System.out.println("양");
+		}
+		else {
+			System.out.println("가");
+		}
+
+3.변수 3개를 선언후 값을 할당 하여, 3개중 MAX 값을 출력하는 프로그램을 작성하시오.
+
+/*
+		int a = 10;
+		int b = 20;
+		int c = 30;
+		
+		int max = 0;
+		
+		if(a>=b && a>=c) {
+			max= a;
+		}else if(b>=a && b>=c) {
+			max= b;
+		}else {
+			max=c;
+		}
+		System.out.println("MAX 값은" + max);
+		*/
+		/*
+		int a = 10;
+		int b = 20;
+		int c = 30;
+		
+		int max = 0;
+		
+		max = (a>b && a>c)? a : (b>c) ? b:c;
+		
+		System.out.println("MAX 값은" + max);
+		*/
+		
+		
+		/*
+		int a = 10;
+		int b = 50;
+		int c = 30;
+		
+		int max = a;
+		
+		if(b>max) {
+			max=b;
+		}
+		
+		if(c>max) {
+			max = c;
+		}
+		
+		System.out.println("MAX 값은" + max);
+		*/
+		
+		
+		
+		
+		
+		/*
+		int a = 100;
+		int b = 200;
+		int c = 300;
+		
+		int max = 0;
+		
+		if(a>b) {//a가 큰 경우
+			if(a>c) {
+				max=a;
+			}else {
+				max=c;
+			}
+		}else {//b가 큰 경우
+			
+			if(b>c) {
+				max=b;
+			}else {
+				max=c;
+			}
+		}
+		System.out.println("MAX 값은" + max);
+		*/
+//		if(n3>n2) {//n3가 n2보다 클때 
+//			
+//			if(n3>n1) {//n3가 n1보다 크다  n3>n2>n1
+//				ad=n3;
+//				
+//			}else {//n1이 최대값이다   n1>n3>n2
+//				ad=n1;
+//			}
+//		}
+//		else if(n2>n1) {//n2가 n1보다 클때 n2>n3?n1?
+//			ad=n2;  
+//			
+//		}else {//n1이 최대값일떄  1n>n2>n3
+//		ad = n1;
+//		}
+//		System.out.println(ad);
+
+4. switch 문의 동작 방식에 대하여 설명하시오.(걸어서 하늘까지)
+switch문에서 case와 default는 실행 위치를 표시하는 용도로만 사용되는 것이다.
+n값이 가는 case부터 시작되는데 brake문이 실행되면 바로 switch문을 빠져나간다.
+
+5. do while 과 while 문의 차이는?
+while문은 먼저 조건을 검사한 뒤에 결과가 true이면 중괄호 영역을 실행한다.
+do while문은 먼저 중괄호 영역을 실행 하고 난 뒤에 조건을 검사하고 결과가 true이면 반복을 결정한다.
+do while은 처음은 무조건 실행되게 되어있다.
+
+6. for 문의 실행 순서를 설명하시오.
+for문은 초기화, 조건식, 증감식, 수행되는 부분 으로 이루어져 있다. 제일 먼저 초기화가 수행되고,
+그 이후부터 조건식이 참인 동안 조건식-> 수행될 문장-> 증감식의 순서로 반복된다. 이런 반복을 거치다가
+조건식이 false가 되면 for문 전체를 빠져나가게 된다.
+
+7.do while 문과 while 문을 이용 하여, 9단을 찍으시오.
+(while문)			
+int dan = 9
+int i = 1;
+while(i<10) {
+System.out.println(dan+"x"+i+"="+(dan*i));
+i++;
+(do while문)
+int dan = 9;
+int i = 1;
+do {
+System.out.println(dan+"x"+i+"="+(dan*i));
+i++;
+}while(i<10);
+
+8.구구단 6단 중 짝수만(6*2, 6*4, 6*6,6*8) 찍으시오.
+
+		int dan = 6;
+		
+		for(int i=2; i<10; i+=2) {
+			System.out.println(dan+"x"+i+"="+(dan*i));

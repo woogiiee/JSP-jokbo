@@ -1,0 +1,66 @@
+1. 각각의 반복문의 무한 루프를 만드는 방법은?
+while문은 특정 조건을 만족할 때 까지 무한정 돌아간다. while문 조건에 항상 참이 되는
+식을 넣으면 된다.
+for문도 특정조건이 참이 된다면 계속해서 돌아간다.
+
+2.구구단을 짜는 프로그램을 작성하시오.(외울것)
+for(int i=1;i<10;i++) {
+			for(int dan = 1;dan<10;dan++) {
+				System.out.print(dan+"x"+i+"="+(dan*i)+"\t");
+			}System.out.println();
+		}
+3.아래와 같이 프로그램을 짜시오.
+*****
+ ****
+  ***
+   **
+    *     
+\for(int i=0;i<=4;i++) {
+			  
+			for(int j=1; j<=i;j++) { 
+				System.out.print(" ");
+			} for(int k=5;k>i;k--) {
+				System.out.print("*");
+			  
+			}System.out.println(); }
+	}
+4. 1 부터 100 까지 더하는 프로그램을 작성하시오(외울것)
+1+2+3+4+5+......+100;
+
+int sum = 0;
+		
+		for(int i=1;i<=100;i++) {
+			sum= sum+i;
+			System.out.println(sum);
+		}
+
+5. 129 Page 문제 2
+int i = 1;
+//		int sum = 0;
+//		
+//		for(;;) {
+//			sum = i+sum;
+//			i+=2;
+//			if(sum>1000) {
+//				
+//				break;		
+//				
+//			}
+//		}System.out.println(sum);
+//		System.out.println(i);
+//		
+
+6. 135 page 문제 1
+for(int dan=2;dan<10;dan+=2) {
+			for(int i = 1;i<=9;i++) {
+				System.out.println(dan+"X"+i+"="+(dan*i));
+				if(i>=dan) 
+					break;
+
+7. 125 page - 문제 1
+int m =1;
+		for(int i = 1;i<=10;i++) {
+			m= m*i;
+			System.out.println(m);
+
+8. 135 page 문제 2 (선생도 무슨말인지 모르겠음)
